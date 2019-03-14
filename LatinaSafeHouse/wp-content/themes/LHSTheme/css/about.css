@@ -1,0 +1,10 @@
+/*ABOUT PAGE*/
+.aboutJumbotron{
+	height: 310px;
+    background-repeat: no-repeat;
+    background-size: 100% 175%;
+    background-position: center;
+    /*filter: blur(1px);*/
+    /*opacity: .66;*/
+    position: relative;
+}
