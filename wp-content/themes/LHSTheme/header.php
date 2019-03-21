@@ -10,7 +10,7 @@
 		</div>
 		<nav class="navbar navbar-expand-lg navbar-light position-relative lshNavBar">
 			<div class="container-fluid lshNavBarContainer">
-				<div class="">
+				<div class="imageDiv">
 					<a href="<?php echo site_url() ?>">
 						<img class="position-absolute lshLogoImage" src="<?php echo get_theme_file_uri('images/lshlogo.jpg'); ?>" height="125px" width="125px">
 					</a>
@@ -81,15 +81,17 @@
 				      </li>
 				    </ul>
 			  	</div>
-			  	<a href="#" class="banners donateBanner">
-				    	<div class="bannerText">DONATE</div>
-				</a>
-				<a href="#" class="banners espanolBanner">
-				    	<div class="bannerText">ESPAÑOL</div>
-				</a>
-				<a href="https://google.com/" class="banners exitBanner" id="closeBanner">
-				    	<div class="bannerText">EXIT</div>
-				</a>
+			  	<div class="bannersGroup">
+				  	<a href="#" class="banners donateBanner">
+					    	<div class="bannerText">DONATE</div>
+					</a>
+					<a href="#" class="banners espanolBanner">
+					    	<div class="bannerText">ESPAÑOL</div>
+					</a>
+					<a href="https://google.com/" class="banners exitBanner" id="closeBanner">
+					    	<div class="bannerText">EXIT</div>
+					</a>
+				</div>
 			</div>
 		</nav>
 	</div>

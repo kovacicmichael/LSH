@@ -7,6 +7,12 @@
     z-index: 100;
 }
 
+.imageDiv{
+  position: relative;
+  height: 85px;
+  width: 20%;
+}
+
 .exitInfoRow{
   font-family: "Open Sans", sans-serif;
   font-weight: normal;
@@ -52,6 +58,12 @@
 
 .exitColumnText > a:hover{
   color: #008096;
+}
+
+.bannersGroup{
+  position: relative;
+  width: 20%;
+  height: 85px;
 }
 
 .navbar{
@@ -101,7 +113,7 @@
 
 .lshLogoImage{
   top:0px;
-  left:100px;
+  left:20%;
   border-radius: 50%;
 }
 
@@ -171,7 +183,7 @@
 }
 
 .lshLinkList{
-  margin-left: 22rem !important;
+  /*margin-left: 22rem !important;*/
 }
 
 
@@ -233,15 +245,15 @@
 }
 
 .donateBanner{
-  right:7%;
+  right:25%;
 }
 
 .espanolBanner{
-  right: 12%;
+  right: 50%;
 }
 
 .exitBanner{
-  right:2%;
+  right:0;
   background-color: #c50101;
 }
 
@@ -287,3 +299,72 @@
 .carousel{
   z-index: 5;
 }
+
+
+@media only screen and (max-width: 1350px) {
+  .donateBanner{
+    right: 28%;
+  }
+  .espanolBanner {
+    right: 56%;
+  }
+}
+
+@media only screen and (max-width: 1300px) {
+  .donateBanner{
+    right: 32%;
+  }
+  .espanolBanner {
+    right: 65%;
+  }
+}
+
+@media only screen and (max-width: 1250px) {
+  .donateBanner{
+    right: 34%;
+  }
+  .espanolBanner {
+    right: 68%;
+  }
+}
+
+@media only screen and (max-width: 1201px) {
+  .imageDiv{
+    width: 12%;
+  }
+  .lshLogoImage {
+    left: 0%;
+  }
+  .bannersGroup{
+    width: 15%;
+  }
+  .donateBanner{
+    right: 43%;
+  }
+  .espanolBanner {
+    right: 86%;
+  }
+}
+
+@media only screen and (max-width: 1160px) {
+  .imageDiv{
+    width: 12%;
+  }
+  .lshLogoImage {
+    left: 0%;
+  }
+  .bannersGroup{
+    display: none;
+  }
+  .lshLinkList{
+    margin-left:auto !important;
+
+  }
+}
+
+
+
+
+
+
+
