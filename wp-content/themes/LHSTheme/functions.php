@@ -1,5 +1,10 @@
 <?php 
 
+function lsh_setup(){
+	add_theme_support('post-thumbnails');
+	// set_post_thumbnail_size( 100, 100 );
+}
+
 function lsh_site_header_files(){
 	wp_enqueue_style('reset_css', get_theme_file_uri('reset.css'));
 	wp_enqueue_style('font_awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
@@ -22,7 +27,11 @@ function my_filter_head() {
 	remove_action('wp_head', '_admin_bar_bump_cb');
 }
 
+
+add_action('after_setup_theme', 'lsh_setup');
 add_action('wp_enqueue_scripts', 'lsh_site_header_files');
 add_action('get_header', 'my_filter_head');
+
+
 
  ?>

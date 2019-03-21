@@ -74,7 +74,7 @@ jQuery(document).ready(function($) {
 	      dots[i].className = dots[i].className.replace(" active", "");
 	  }
 	  slides[slideIndex-1].style.display = "block"; 
-	  slides[slideIndex-1].classList.remove("fade");
+	  //slides[slideIndex-1].classList.remove("fade");
 	  dots[slideIndex-1].className += " active";
 	}
 

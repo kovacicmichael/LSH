@@ -215,10 +215,30 @@ h1{
 	text-align: left !important;
 }
 
+.event-summary__content > p > a{
+  color: purple;
+
+}
+
+.newsImageLink{
+  text-decoration: none !important;
+  display: block;
+  position: absolute;
+  right:0;
+  border-radius: 50%;
+  background-color: white;
+}
+
+.newsImageLink > img{
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+}
+
 .lshEventRow{
 	/*margin-top: 50px !important;*/
 	padding-top: 20px;
-	padding-bottom: 30px;
+  height: 125px;
 }
 
 /*logo carousel*/
@@ -281,6 +301,11 @@ h1{
 .carousel-inner .carousel-item-left{ 
   transform: translateX(0);
   
+}
+
+.carousel-item > img{
+  height: 150px;
+  width: 250px;
 }
 
 
