@@ -10,7 +10,7 @@ while(have_posts()){
 
   
   <div class="fluid-container">
-    <div class="jumbotron stayConnectedJumbotron" style="background-image: url(<?php echo get_theme_file_uri('images/colorfulBird.jpg'); ?>);">
+    <div class="jumbotron pageJumbotron stayConnectedJumbotron" style="background-image: url(<?php echo get_theme_file_uri('images/colorfulBird.jpg'); ?>);">
       <div class="page-banner__content container container--narrow">
         <h1 class="page-banner__title"><?php the_title(); ?></h1>
         
@@ -29,7 +29,7 @@ while(have_posts()){
     <div class="row">
       <div class="col-md-4 side-menu">
         <!-- <h3 class='side-panel-header'><a href="<?php echo get_permalink($parent); ?>"><?php echo get_the_title($parent); ?></a></h3> -->
-        <ul class="side-panel-link-list">
+        <ul class="side-panel-link-list pagePageItem">
           <?php 
               if($parent){
                 $findChildrenOf = $parent;
@@ -51,7 +51,7 @@ while(have_posts()){
         
         
       </div>
-      <div class="col-md-6 generic-content">
+      <div class="col-md-7 generic-content">
         <?php the_content(); ?>
       </div>
     </div>

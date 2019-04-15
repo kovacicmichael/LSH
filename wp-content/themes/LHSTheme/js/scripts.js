@@ -3,7 +3,7 @@ jQuery(document).ready(function($) {
 	$(window).scroll(function() {
 	  var scrollTop = $(this).scrollTop();
 
-	  $('.lshNavBar').css({
+	  $('.navbarContainer').css({
 	    opacity: function() {
 	      if(scrollTop == 0){
 	      	return 1;
@@ -26,6 +26,18 @@ jQuery(document).ready(function($) {
 	      // return 1 - (elementHeight - scrollTop) / elementHeight;
 	    }
 	  });
+
+	  $('#sidebar-wrapper').css({
+	  	opacity: function() {
+	      if(scrollTop == 0){
+	      	return 1;
+	      }else{
+	      	return .9;
+	      }
+	      // var elementHeight = $(this).height();
+	      // return 1 - (elementHeight - scrollTop) / elementHeight;
+	    }
+	  })
 	});
 
 	$(window).on('keydown', function (event) {
@@ -43,68 +55,72 @@ jQuery(document).ready(function($) {
 		window.close();
 	})
 
+	$('#collapseButton').on('click', function(event){
+		var show = $('#navbarNav')[0].classList.value.includes("show");
+
+		if(show){
+			$('.lshLogoImage')[0].style.display = '';
+		}else{
+			$('.lshLogoImage')[0].style.display = 'none';
+		}
+	});
+
+	$(".menu-toggle").click(function(e) {
+	    e.preventDefault();
+	    $("#sidebar-wrapper").toggleClass("active");
+	    $(".menu-toggle > .fa-bars, .menu-toggle > .fa-times").toggleClass("fa-bars fa-times");
+	    $(this).toggleClass("active");
+
+	    openCurrentPageMenu();
+	});
+
+	$(".navArrows").on('click', function(event){
+		var subContent = this.nextSibling.nextSibling;
+		if(subContent.classList.value.includes('subActive')){
+			subContent.classList.remove('subActive');
+			this.classList.remove('arrowActive');
+		}else{
+			subContent.classList.add('subActive');
+			this.classList.add('arrowActive');
+		}
+	});
+
+	$(".navArrowPages").on('click', function(event){
+		var subContent = this.nextSibling;
+		if(subContent.classList.value.includes('subActive')){
+			subContent.classList.remove('subActive');
+			this.classList.remove('arrowActive');
+		}else{
+			subContent.classList.add('subActive');
+			this.classList.add('arrowActive');
+		}
+	});
+
+	function openCurrentPageMenu(){
+		var sideNavBar;
+		var section = document.getElementsByClassName('current_page_item');
+		for (var i = 0; i < section.length; i++) {
+			var parent = section[i].parentElement.className;
+			if(parent.includes('dropdown-content'))
+				sideNavBar = section[i];
+				break;
+		}
+		
+		var navArrow = sideNavBar.parentElement.previousElementSibling;
+		if(!navArrow.className.includes('arrowActive'))
+			navArrow.click();
+	};
 
 
-    var slideIndex = 1;
-    
-	// Next/previous controls
-	function plusSlides(n) {
-	  showSlides(slideIndex += n);
-	}
-
-	// Thumbnail image controls
-	function currentSlide(n) {
-	  showSlides(slideIndex = n);
-	}
-
-	function setTimeout(){
-		var slideTimeout = setTimeout(showSlides(slideIndex + 1), 5000);
-	}
-
-	function showSlides(n) {
-	  var i;
-	  var slides = document.getElementsByClassName("mySlides");
-	  var dots = document.getElementsByClassName("dot");
-	  if (n > slides.length) {slideIndex = 1} 
-	  if (n < 1) {slideIndex = slides.length}
-	  for (i = 0; i < slides.length; i++) {
-	      slides[i].style.display = "none"; 
-	  }
-	  for (i = 0; i < dots.length; i++) {
-	      dots[i].className = dots[i].className.replace(" active", "");
-	  }
-	  slides[slideIndex-1].style.display = "block"; 
-	  //slides[slideIndex-1].classList.remove("fade");
-	  dots[slideIndex-1].className += " active";
-	}
-
-	
-	showSlides(slideIndex);
-	//setTimeout();
-
-	$(".dot").on('click', function(event){
-		//clearTimeout(slideTimeout);
-		var id = event.target.id;
-		id = id.replace("dot", "");
-		currentSlide(id);
-
+	$('#headerCarousel').carousel({
+	  interval: 5000,
+	  pause:"hover"
 	})
 
-	$(".next").on('click', function(event){
-		//clearTimeout(slideTimeout);
-		plusSlides(1);
+	$('#sponsorCarousel').carousel({
+	  interval: 3000
 	})
 
-	$(".prev").on('click', function(event){
-		//clearTimeout(slideTimeout);
-		plusSlides(-1);
-	})
-
-
-
-	$('#logoCarousel').carousel({
-	  interval: 10000
-	})
 
 	$('.carousel .carousel-item').each(function(){
 	    var next = $(this).next();
@@ -123,5 +139,80 @@ jQuery(document).ready(function($) {
 	      }
 	});
 
+	//SideBarNavMenu 
+
+	// This is the important part!
+
+	function collapseSection(element) {
+	  // get the height of the element's inner content, regardless of its actual size
+	  var sectionHeight = element.scrollHeight;
+	  
+	  // temporarily disable all css transitions
+	  var elementTransition = element.style.transition;
+	  element.style.transition = '';
+	  
+	  // on the next frame (as soon as the previous style change has taken effect),
+	  // explicitly set the element's height to its current pixel height, so we 
+	  // aren't transitioning out of 'auto'
+	  requestAnimationFrame(function() {
+	    element.style.height = sectionHeight + 'px';
+	    element.style.transition = elementTransition;
+	    
+	    // on the next frame (as soon as the previous style change has taken effect),
+	    // have the element transition to height: 0
+	    requestAnimationFrame(function() {
+	      element.style.height = 0 + 'px';
+	    });
+	  });
+	  
+	  // mark the section as "currently collapsed"
+	  element.setAttribute('data-collapsed', 'true');
+	}
+
+	function expandSection(element) {
+	  // get the height of the element's inner content, regardless of its actual size
+	  var sectionHeight = element.scrollHeight;
+	  
+	  // have the element transition to the height of its inner content
+	  element.style.height = sectionHeight + 'px';
+
+	  // when the next css transition finishes (which should be the one we just triggered)
+	  element.addEventListener('transitionend', function(e) {
+	    // remove this event listener so it only gets triggered once
+	    element.removeEventListener('transitionend', arguments.callee);
+	    
+	    // remove "height" from the element's inline styles, so it can return to its initial value
+	    //element.style.height = null;
+	  });
+	  
+	  // mark the section as "currently not collapsed"
+	  element.setAttribute('data-collapsed', 'false');
+	}
+
+	var classname = document.getElementsByClassName("navArrows");
+	var sidePageClassName = document.getElementsByClassName("navArrowPages");
+
+	var transitionFunction = function(e) {
+	  var section = e.currentTarget.parentElement.querySelector('.dropdown-content.collapsible');
+	  var isCollapsed = section.getAttribute('data-collapsed') === 'true';
+	    
+	  if(isCollapsed) {
+	    expandSection(section)
+	    section.setAttribute('data-collapsed', 'false')
+	  } else {
+	    collapseSection(section)
+	  }
+	};
+
+	for (var i = 0; i < classname.length; i++) {
+	    classname[i].addEventListener('click', transitionFunction, false);
+	}
+
+	for (var i = 0; i < sidePageClassName.length; i++) {
+	    sidePageClassName[i].addEventListener('click', transitionFunction, false);
+	}
+
+
+	openCurrentPageMenu();
 });
 

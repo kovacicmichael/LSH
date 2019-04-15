@@ -75,7 +75,7 @@
 }
 
 .stayConnectedJumbotron{
-    height: 310px;
+    height: 375px;
     background-repeat: no-repeat;
     background-size: 100% 200%;
     background-position: top;
@@ -107,6 +107,18 @@
     
 }
 
+.eventsJumbotron{
+    height: 365px;
+    background-repeat: no-repeat;
+    background-size: 100% 150%;
+    background-position: center;
+    /*filter: blur(1px);*/
+    opacity: 1;
+    position: relative;
+    text-align: right;
+    
+}
+
 .aboutJumbotron:after {
   background: white;
   bottom: -50px;
@@ -124,6 +136,21 @@
 
 .whyLatinaJumbotron:after {
   background: white;
+  bottom: -50px;
+    content: '';
+    display: block;
+    height: 15%;
+    left: 0;
+    padding-bottom: -5px;
+    position: absolute;
+    right: 0;
+    transform: skewY(2deg);
+    transform-origin: 100%;
+    z-index: 1;
+}
+
+.pageJumbotron:after{
+    background: white;
   bottom: -50px;
     content: '';
     display: block;
@@ -171,7 +198,7 @@ Generic Pages
 
 .side-menu{
 	min-height: 400px;
-	background-color: #c5c5c5;
+	background-color: #5c5f61;
 	opacity: 1;
 	position: relative;
     padding: 0 !important;
@@ -246,13 +273,20 @@ Generic Pages
 }
 
 .bottom-page-flag{
-    background-color: #c5c5c5;
+    background-color: #5c5f61;
     height: 50px;
     /*opacity: .3;*/
     margin-bottom: 60px !important;
     
 }
 
+
+.generic-content-event{
+    margin-top: 30px !important;
+    border-right: 30px solid #5c5f61;
+    padding: 30px;
+    border-left: 30px solid #5c5f61;
+}
 /*.bottom-page-flag:after{
     background-color: #c5c5c5;
   bottom: -50px;
@@ -283,6 +317,50 @@ Generic Pages
   z-index: -1;
 }*/
 
+.navArrowBlank{
+    padding: 6px 6px 6px 6px;
+    display: inline-flex;
+    margin-left: 7px !important;
+    font-size: 18pt;
+    -webkit-transition: all 0.4s ease 0s;
+    -moz-transition: all 0.4s ease 0s;
+    -ms-transition: all 0.4s ease 0s;
+    -o-transition: all 0.4s ease 0s;
+    transition: all 0.4s ease 0s;
+    color: transparent;
+}
+
+.navArrowPages{
+    padding: 6px 6px 6px 6px;
+    display: inline-flex;
+    cursor: pointer;
+    color: white;
+    font-size: 18pt;
+    margin-left: 7px !important;
+    -webkit-transition: all 0.4s ease 0s;
+    -moz-transition: all 0.4s ease 0s;
+    -ms-transition: all 0.4s ease 0s;
+    -o-transition: all 0.4s ease 0s;
+    transition: all 0.4s ease 0s;
+}
+
+.navArrowPages:hover{
+  color: purple;
+}
+
+.navArrowPages.arrowActive{
+  transform: rotate(-90deg);
+}
+.navArrowPages + .dropdown-content.subActive {
+  visibility: visible;
+  /*opacity: 1;*/
+  /*z-index: 1;*/
+}
+
+.subMenuHeaderPage{
+    border-right: 2px solid #018ba0;
+}
+
 .side-panel-link-list{
 	text-align: right;
 	padding-top: 15px;
@@ -290,19 +368,35 @@ Generic Pages
     /*padding-right: 25px;*/
 }
 
-.page_item{
+.pagePageItem > .page_item{
 	padding-top: 10px;
 	padding-bottom: 10px;
     padding-right: 30px;
 }
 
+.page_item_sub{
+
+}
+
+.page_item_sub > a {
+    color: white;
+    text-decoration: none;
+    padding: 15px 50px 15px 50px;
+    font-size: 12pt;
+}
+
 .page_item > a {
 	color: white;
 	text-decoration: none;
+    padding: 15px 50px 15px 50px;
+    font-size: 16pt;
 }
 
 .page_item > a:hover{
-    color:purple;
+    /*color:purple;*/
+    color: white;
+    background: #008299;
+    padding: 15px 50px 15px 50px;
 }
 
 .current_page_item{
@@ -310,9 +404,11 @@ Generic Pages
 
 }
 
-.current_page_item:after {
-    /*background-color: #008096;*/
-    /*opacity: 1 !important;*/
+.current_page_item > a{
+    color: white;
+}
+
+/*.pagePageItem > .current_page_item:after {
     z-index: 75;
     display: flex;
     transform: translateY(-50%);
@@ -320,13 +416,13 @@ Generic Pages
     content: "";
     top: 52%;
     right: 0;
-    /*margin-left: -25%;*/
+    margin-left:
     width: 0;
     height: 0;
     border-top: solid 15px transparent;
-    border-right: solid 15px purple;
+    border-right: solid 15px #008299;
     border-bottom: solid 15px transparent;
-}
+}*/
 
 .quickTip{
     border: 1px solid black;
@@ -450,6 +546,11 @@ Generic Pages
     padding-top: 20px;
     border-bottom: 5px solid #5d5f61;
     margin-bottom: 20px;
+}
+
+.pdfWindow{
+    width: 100%;
+    height:800px;
 }
 
 

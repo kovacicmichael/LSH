@@ -3,7 +3,7 @@ Contributors: maxfoundry, AlanP57
 Tags: WordPress media library folders, media library folders, organize media library
 Requires at least: 4.0
 Tested up to: 5.1
-Stable tag: 4.3.7
+Stable tag: 4.3.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -167,10 +167,16 @@ To delete a folder, right click (Ctrl-click with Macs) on a folder. A popup menu
 
 
 == Changelog ==
+= 4.3.9 =
+* Fixed conflict with other plugins using pluggable.php 
+
+= 4.3.8 =
+* Added security enhancements
+
 = 4.3.7 =
 * Add code to check for IIS when generating image metadata
 
-= 4.3.5 =
+= 4.3.5 = 
 * Added code to check for non existent folder parent as suggested by Christian
 
 = 4.3.4 =

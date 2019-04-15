@@ -3,7 +3,7 @@
 Plugin Name: Media Library Folders for WordPress
 Plugin URI: http://maxgalleria.com
 Description: Gives you the ability to adds folders and move files in the WordPress Media Library.
-Version: 4.3.7
+Version: 4.3.9
 Author: Max Foundry
 Author URI: http://maxfoundry.com
 
@@ -20,6 +20,7 @@ class MaxGalleriaMediaLib {
 	public $uploads_folder_ID;
 	public $blog_id;
 	public $base_url_length;
+  public $current_user_can_upload;
 
   public function __construct() {
 		$this->blog_id = 0;
@@ -29,7 +30,7 @@ class MaxGalleriaMediaLib {
 		$this->upload_dir = wp_upload_dir();  
     $this->wp_version = get_bloginfo('version'); 
 	  $this->base_url_length = strlen($this->upload_dir['baseurl']) + 1;
-    
+        
     $this->uploads_folder_name = get_option(MAXGALLERIA_MEDIA_LIBRARY_UPLOAD_FOLDER_NAME, "uploads");      
     $this->uploads_folder_name_length = strlen($this->uploads_folder_name);
         
@@ -43,7 +44,7 @@ class MaxGalleriaMediaLib {
 
 	public function set_global_constants() {	
 		define('MAXGALLERIA_MEDIA_LIBRARY_VERSION_KEY', 'maxgalleria_media_library_version');
-		define('MAXGALLERIA_MEDIA_LIBRARY_VERSION_NUM', '4.3.7');
+		define('MAXGALLERIA_MEDIA_LIBRARY_VERSION_NUM', '4.3.9');
 		define('MAXGALLERIA_MEDIA_LIBRARY_IGNORE_NOTICE', 'maxgalleria_media_library_ignore_notice');
 		define('MAXGALLERIA_MEDIA_LIBRARY_PLUGIN_NAME', trim(dirname(plugin_basename(__FILE__)), '/'));
 		define('MAXGALLERIA_MEDIA_LIBRARY_PLUGIN_DIR', WP_PLUGIN_DIR . '/' . MAXGALLERIA_MEDIA_LIBRARY_PLUGIN_NAME);
@@ -241,51 +242,44 @@ class MaxGalleriaMediaLib {
   
   public function enqueue_admin_print_scripts() {
     global $pagenow, $current_screen;
+    
+    if($this->current_user_can_upload) {
 		
-    if (isset( $current_screen ) && 
-        $current_screen->base != 'all-import_page_pmxi-admin-import' && 
-        $current_screen->base != 'all-import_page_pmxi-admin-manage' &&
-        $current_screen->post_type != 'acf-field-group' &&
-        $current_screen->base != 'pmxi-admin-manage' && 
-        $current_screen->base != 'pmxi-admin-import') {
-      
-      if (in_array($pagenow, array('post.php', 'page.php', 'post-new.php', 'post-edit.php', 'uploads.php', 'admin.php'))) {
+      if (isset( $current_screen ) && 
+          $current_screen->base != 'all-import_page_pmxi-admin-import' && 
+          $current_screen->base != 'all-import_page_pmxi-admin-manage' &&
+          $current_screen->post_type != 'acf-field-group' &&
+          $current_screen->base != 'pmxi-admin-manage' && 
+          $current_screen->base != 'pmxi-admin-import') {
 
-          wp_register_script( 'loader-folders', MAXGALLERIA_MEDIA_LIBRARY_PLUGIN_URL . '/js/mgmlp-loader.js', array( 'jquery' ), '', true );
+        if (in_array($pagenow, array('post.php', 'page.php', 'post-new.php', 'post-edit.php', 'uploads.php', 'admin.php'))) {
 
-          wp_localize_script( 'loader-folders', 'mgmlp_ajax', 
-                array( 'ajaxurl' => admin_url( 'admin-ajax.php' ),
-                       'confirm_file_delete' => __('Are you sure you want to delete the selected files?', 'maxgalleria-media-library' ),
-                       'nothing_selected' => __('No items were selected.', 'maxgalleria-media-library' ),
-                       'no_images_selected' => __('No images were selected.', 'maxgalleria-media-library' ),
-                       'no_quotes' => __('Folder names cannot contain single or double quotes.', 'maxgalleria-media-library' ),
-                       'no_spaces' => __('Folder names cannot contain spaces.', 'maxgalleria-media-library' ),
-                       'valid_file_name' => __('Please enter a valid file name with no spaces.', 'maxgalleria-media-library' ),
-                       'nonce'=> wp_create_nonce(MAXGALLERIA_MEDIA_LIBRARY_NONCE))
-                     ); 
+            wp_register_script( 'loader-folders', MAXGALLERIA_MEDIA_LIBRARY_PLUGIN_URL . '/js/mgmlp-loader.js', array( 'jquery' ), '', true );
 
-          wp_enqueue_script('loader-folders');
+            wp_localize_script( 'loader-folders', 'mgmlp_ajax', 
+                  array( 'ajaxurl' => admin_url( 'admin-ajax.php' ),
+                         'confirm_file_delete' => __('Are you sure you want to delete the selected files?', 'maxgalleria-media-library' ),
+                         'nothing_selected' => __('No items were selected.', 'maxgalleria-media-library' ),
+                         'no_images_selected' => __('No images were selected.', 'maxgalleria-media-library' ),
+                         'no_quotes' => __('Folder names cannot contain single or double quotes.', 'maxgalleria-media-library' ),
+                         'no_spaces' => __('Folder names cannot contain spaces.', 'maxgalleria-media-library' ),
+                         'valid_file_name' => __('Please enter a valid file name with no spaces.', 'maxgalleria-media-library' ),
+                         'nonce'=> wp_create_nonce(MAXGALLERIA_MEDIA_LIBRARY_NONCE))
+                       ); 
 
+            wp_enqueue_script('loader-folders');
+
+        }
       }
-    }
-//    if(isset($_REQUEST['page'])) {
-//      if($_REQUEST['page'] === 'media-library-folders') {
-//        wp_register_script( 'loader-folders', MAXGALLERIA_MEDIA_LIBRARY_PLUGIN_URL . '/js/mgmlp-loader.js', array( 'jquery' ), '', true );
-//
-//        wp_localize_script( 'loader-folders', 'mgmlp_ajax', 
-//              array( 'ajaxurl' => admin_url( 'admin-ajax.php' ),
-//                     'nonce'=> wp_create_nonce(MAXGALLERIA_MEDIA_LIBRARY_NONCE))
-//                   ); 
-//
-//        wp_enqueue_script('loader-folders');
-//      }
-//    }		
+    }  
   }
  
   public function setup_hooks() {
 		add_action('init', array($this, 'load_textdomain'));
 	  add_action('init', array($this, 'register_mgmlp_post_type'));
 		add_action('init', array($this, 'show_mlp_admin_notice'));
+    add_action('init', array($this, 'get_upload_status'));
+
 	  add_action('admin_init', array($this, 'ignore_notice'));
     
 		add_action('admin_print_styles', array($this, 'enqueue_admin_print_styles'));
@@ -2866,11 +2860,12 @@ AND pm.meta_key = '_wp_attached_file'";
 		
 		$new_file_name = sanitize_file_name($new_file_name);
           
-    $sql = "select ID, pm.meta_value as attached_file, post_title, post_name 
+    $sql = $wpdb->prepare("select ID, pm.meta_value as attached_file, post_title, post_name 
 from {$wpdb->prefix}posts 
 LEFT JOIN {$wpdb->prefix}postmeta AS pm ON (pm.post_id = {$wpdb->prefix}posts.ID) 
-where ID = $file_id
-AND pm.meta_key = '_wp_attached_file'";
+where ID = %s
+AND pm.meta_key = '_wp_attached_file'", $file_id);
+
 		
     $row = $wpdb->get_row($sql);
     if($row) {
@@ -5129,7 +5124,22 @@ AND meta_key = '_wp_attached_file'";
     return $message;
     
   }
-      	
+  
+//add_action('init','do_stuff');
+//function do_stuff(){
+//  $current_user = wp_get_current_user();
+//  // ...
+//}
+
+  public function get_upload_status() {
+    $data = get_userdata(get_current_user_id());
+
+    if(is_object($data))
+      $this->current_user_can_upload = $data->allcaps['upload_files'];
+    else
+      $this->current_user_can_upload = false;   
+  }    
+          	
 }
 
 $maxgalleria_media_library = new MaxGalleriaMediaLib();

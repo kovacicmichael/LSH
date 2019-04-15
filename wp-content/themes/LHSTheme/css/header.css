@@ -4,7 +4,13 @@
     top: 0;
     width: 100%;
     height: 110px;
-    z-index: 100;
+    z-index: 1000;
+    background-color: #6f0083;
+    -webkit-transition: opacity .3s ease-out;
+  -moz-transition: opacity .3s ease-out;
+  -o-transition: opacity .3s ease-out;
+  transition: opacity .3s ease-out;
+  font-family: "Open Sans", sans-serif;
 }
 
 .imageDiv{
@@ -98,7 +104,6 @@
 
 
 .lshNavBarContainer{
-	margin-top: 1rem !important;
 	margin-bottom: 1rem !important;
 }
 
@@ -112,8 +117,8 @@
 }
 
 .lshLogoImage{
-  top:0px;
-  left:20%;
+  top:0;
+  left:5%;
   border-radius: 50%;
 }
 
@@ -163,6 +168,14 @@
   border-right: none !important;
 }
 
+.navbar-toggler{
+  background-color: #007e92;
+}
+
+.navbar-toggler-icon{
+  color: white;
+}
+
 .lsh-dropdown-menu{
   font-family: "Open Sans", sans-serif;
   border-radius: 0 !important;
@@ -183,7 +196,7 @@
 }
 
 .lshLinkList{
-  /*margin-left: 22rem !important;*/
+  margin-left: auto !important;
 }
 
 
@@ -296,9 +309,315 @@
   color: white !important;
 }
 
-.carousel{
-  z-index: 5;
+.collapsing{
+  background-color: #007e92;
 }
+
+/*.show{
+  background-color: #007e92;
+  margin-top: 5px !important;
+  padding: 10px;
+}*/
+
+
+/*SIDE NAVBAR*/
+
+.sideNavBar{
+  display: none;
+}
+
+/* The side navigation menu */
+/* Side Menu */
+
+.navMenuContainer{
+  width: 100%;
+  overflow: auto;
+}
+
+#sidebar-wrapper {
+  position: fixed;
+  z-index: 100;
+  margin-top: 25px !important;
+  right: 0;
+  width: 250px;
+  height: 100%;
+  -webkit-transition: all 0.4s ease 0s;
+  -moz-transition: all 0.4s ease 0s;
+  -ms-transition: all 0.4s ease 0s;
+  -o-transition: all 0.4s ease 0s;
+  transition: all 0.4s ease 0s;
+  transform: translateX(250px);
+  background: black;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+/*i{
+  display: inline;
+  position: absolute;
+  bottom: 0;
+  right: 40%;
+}*/
+.icons{
+  border-bottom: 1pt solid white;
+  position: absolute;
+  bottom: 10%;
+  right: 5%;
+  width: 90%;
+  text-align: center;
+}
+
+.icons > a{
+  display: inline-block;
+  color: purple;
+  margin-right: 10px !important;
+  margin-left: 10px !important;
+  font-size: 18pt !important;
+}
+
+.icons > a:hover{
+  color:#008096;
+}
+
+#linkedin{
+  display: inline;
+  font-size: 18pt;
+  position: absolute;
+  bottom: 25%;
+  right: 28%;
+}
+#github{
+  display: inline;
+  font-size: 18pt;
+  position: absolute;
+  bottom: 25%;
+  right: 68%;
+}
+#github:hover{
+  color: gray;
+}
+#linkedin:hover{
+  color: gray;
+}
+#email{
+  display: inline;
+  font-size: 18pt;
+  position: absolute;
+  bottom: 25%;
+  right: 48%;
+}
+#email:hover{
+  color: gray;
+  cursor: pointer;
+}
+#navFooter{
+  position: absolute;
+  bottom: 0;
+  right: 30%;
+}
+.sidebar-nav {
+  position: absolute;
+  top: 0;
+  width: 250px;
+  margin: 0;
+  padding: 0;
+  overflow: scroll;
+  height: 84%;
+  list-style: none;
+}
+#sidebar-wrapper > ul > li{
+  float: none;
+  line-height: 45px;
+  z-index: 100;
+}
+.sidebar-nav li.sidebar-nav-item > a {
+  display: block;
+  margin-top: 7px !important;
+  text-decoration: none;
+  margin-top: 5px !important;
+  margin-bottom: 5px !important;
+  color: #fff;
+  padding-left: 10px;
+  font-weight: normal;
+  display: inline-flex;
+  width: 100%;
+  
+}
+
+.sidebar-nav-item > a:hover{
+  background-color: #008096;
+  opacity: 1;
+}
+
+.subMenuHeader{
+  border-right: 2px solid purple;
+  width: 70% !important;
+}
+
+.subMenuHeaderBoarde {
+  border-left: 2px solid #f51c40;
+  position: absolute;
+  top: 50%;
+  bottom: 0;
+}
+
+.sidebar-nav li a:hover {
+  text-decoration: none;
+  color: white;
+  
+  /*background: rgba(255, 255, 255, 0.2);*/
+  background-color: #004a61;
+  opacity: 1 !important;
+}
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+  text-decoration: none;
+}
+
+.sidebar-nav > .sidebar-brand {
+  clear: both;
+  font-size: 1.2rem;
+  background: rgba(52, 58, 64, 0.1);
+  height: 80px;
+  text-align: left;
+  line-height: 50px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  /*padding-left: 15px;*/
+}
+
+.sidebar-nav > .sidebar-brand a {
+  color: #fff;
+}
+
+.sidebar-nav > .sidebar-brand a:hover {
+  color: purple;
+  background: none;
+}
+
+#sidebar-wrapper.active {
+  right: 250px;
+  width: 250px;
+  padding:10px;
+  -webkit-transition: all 0.4s ease 0s;
+  -moz-transition: all 0.4s ease 0s;
+  -ms-transition: all 0.4s ease 0s;
+  -o-transition: all 0.4s ease 0s;
+  transition: all 0.4s ease 0s;
+}
+
+.menu-toggle {
+  position: fixed;
+  right: 15px;
+  top: 40px;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  color: #fff;
+  background: rgba(52, 58, 64, 0.5);
+  line-height: 50px;
+  z-index: 999;
+}
+
+.menu-toggle:focus, .menu-toggle:hover {
+  color: #fff;
+}
+
+.menu-toggle:hover {
+  background: #343a40;
+}
+
+.navArrows{
+    padding: 6px 6px 6px 6px;
+    display: inline-flex;
+    cursor: pointer;
+    color: white;
+    font-size: 15pt;
+    margin-left: 7px !important;
+    -webkit-transition: all 0.4s ease 0s;
+    -moz-transition: all 0.4s ease 0s;
+    -ms-transition: all 0.4s ease 0s;
+    -o-transition: all 0.4s ease 0s;
+    transition: all 0.4s ease 0s;
+}
+
+.navArrows:hover{
+  color: purple;
+}
+
+.navArrows.arrowActive{
+  transform: rotate(-90deg);
+}
+.navArrows + .dropdown-content.subActive {
+  /*visibility: visible;*/
+  /*opacity: 1;*/
+  /*z-index: 1;*/
+}
+
+.dropdownSideMenu {
+  position: relative;
+  display: block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  min-width: 160px;
+  /*box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);*/
+  z-index: -1;
+  line-height: 25px;
+  padding-left: 10px;
+  visibility: visible;
+  height: 0;
+  overflow: hidden;
+  -webkit-transition: visibility .3s ease-out;
+  -moz-transition: visibility .3s ease-out;
+  -ms-transition: visibility .3s ease-out;
+  -o-transition: visibility .3s ease-out;
+  transition: visibility .3s ease-out;
+
+  -webkit-transition: height .5s ease-out;
+  -moz-transition: height .5s ease-out;
+  -ms-transition: height .5s ease-out;
+  -o-transition: height .5s ease-out;
+  transition: height .5s ease-out;
+}
+
+/*, visibility 0s linear 0.3s, z-index 0s linear 0.01s;
+, visibility 0s linear 0.3s, z-index 0s linear 0.01s;
+, visibility 0s linear 0.3s, z-index 0s linear 0.01s;
+, visibility 0s linear 0.3s, z-index 0s linear 0.01s;
+, visibility 0s linear 0.3s, z-index 0s linear 0.01s;*/
+
+.dropdown-content a {
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content > li > a:hover {
+  background-color: #008096;
+  /*background-color: #343a40;*/
+  opacity: .9 !important;
+  color: white;
+}
+
+.dropdown-content > .current_page_item{
+  background-color: #008096;
+}
+
+.dropdown-content > .page_item{
+  /*margin-top: 5px !important;*/
+  margin-bottom: 3px !important;
+
+}
+
+/* Show the dropdown menu on hover */
+/*.dropdown:hover .dropdown-content {display: block;}*/
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdownSideMenu:hover .dropbtn {background-color: #3e8e41;}
+
 
 
 @media only screen and (max-width: 1350px) {
@@ -333,16 +652,16 @@
     width: 12%;
   }
   .lshLogoImage {
-    left: 0%;
+    left: 3%;
   }
   .bannersGroup{
-    width: 15%;
+    width: 18%;
   }
   .donateBanner{
-    right: 43%;
+    right: 34%;
   }
   .espanolBanner {
-    right: 86%;
+    right: 68%;
   }
 }
 
@@ -351,7 +670,29 @@
     width: 12%;
   }
   .lshLogoImage {
-    left: 0%;
+    left: 4%;
+  }
+  .bannersGroup{
+    width: 12%;
+  }
+  .donateBanner{
+    right: 50%;
+  }
+  .espanolBanner {
+    display: none;
+  }
+  .lshLinkList{
+    margin-left:auto !important;
+
+  }
+}
+
+@media only screen and (max-width: 1080px) {
+  .imageDiv{
+    width: 12%;
+  }
+  .lshLogoImage {
+    left: 4%;
   }
   .bannersGroup{
     display: none;
@@ -363,6 +704,29 @@
 }
 
 
+@media only screen and (max-width: 991px) {
+  .sideNavBar{
+    display: block;
+  }
+
+  .collapse{
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 770px) {
+  .top-page-flag-green{
+    display: none;
+  }
+
+  .side-menu{
+    display: none;
+  }
+
+  .generic-content{
+    margin-top: 50px !important;
+  }
+}
 
 
 

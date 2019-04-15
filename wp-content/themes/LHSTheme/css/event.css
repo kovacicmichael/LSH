@@ -1,0 +1,109 @@
+.tribe-events-back{
+	margin-bottom: 15px !important;
+}
+.tribe-events-back > a{
+	color: purple;
+}
+.tribe-events-back > a:hover{
+	color: #00818a;
+}
+.tribe-events-single-event-title{
+	border-bottom: 5px solid #5c5f61;
+    width: 80%;
+    padding-bottom: 10px;
+    color: #5c5f61;
+    margin-bottom: 20px !important;
+}
+.tribe-events-schedule.tribe-clearfix{
+	margin-bottom: 20px !important;
+    font-size: 18pt;
+    color: #5c5f61;
+}
+.tribe-events-cost{
+	margin-left: 15px !important;
+}
+.tribe-events-sub-nav{
+	margin-bottom: 10px !important;
+}
+.tribe-events-sub-nav > li > a{
+	color: purple;
+}
+.tribe-events-sub-nav > li > a:hover{
+	color: #00818a;
+}
+.tribe-events-single-event-description.tribe-events-content{
+	width: 95%;
+    /* border-right: 5px solid #5c5f61; */
+    border-bottom: 5px solid #5c5f61;
+    padding-bottom: 20px;
+}
+.type-tribe_events.status-publish{
+	position: relative;
+}
+.tribe-events-cal-links{
+	position: absolute;
+    right: 5%;
+    top: 40%;
+}
+.tribe-events-cal-links > a{
+	margin-bottom: 20px !important;
+	background-color: #008096;
+}
+.tribe-events-cal-links > a:hover{
+	background-color: purple !important;
+}
+.tribe-events-single-section{
+	margin-top: 20px !important;
+	color: #5c5f61;
+}
+.tribe-organizer-url > a{
+	color: purple;
+}
+.tribe-organizer-url > a:hover{
+	color: #008096;
+}
+.tribe-events-address > a{
+	color: purple;
+}
+.tribe-events-address > a:hover{
+	color: #008096;
+}
+
+
+
+/*MAIN PAGE*/
+.tribe-events-event-meta > div > div > a{
+	color: purple;
+}
+.tribe-events-event-meta > div > div > a:hover{
+	color: #008096;
+}
+.tribe-events-list-event-title{
+	margin-bottom: 10px !important;
+}
+.tribe-events-event-cost{
+	margin-top: 5px !important;
+}
+.tribe-events-list-event-title > a{
+	color: purple;
+}
+
+.tribe-events-list-event-title > a:hover {
+	color: #00818a;
+}
+.type-tribe_events{
+	margin-bottom: 15px !important;
+}
+.tribe-events-list-event-description.tribe-events-content{
+	margin-top: 10px !important;
+}
+.tribe-events-list-event-description.tribe-events-content > a{
+	color: purple;
+}
+.tribe-events-list-event-description.tribe-events-content > a:hover{
+	color: #00818a;
+}
+
+
+
+

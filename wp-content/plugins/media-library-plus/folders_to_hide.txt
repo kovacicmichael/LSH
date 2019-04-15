@@ -8,14 +8,17 @@ bb-theme
 beaver-builder-plugin
 bpfb
 buddypress
+copysafe-pdf
 elementor
 et_temp
 events-manager
 galleries
 gppro
 gravity_forms
+grid-gallery
 h5p
 html_to_wp
+imagecleanup
 group-avatars
 group-documents
 ithemes-security

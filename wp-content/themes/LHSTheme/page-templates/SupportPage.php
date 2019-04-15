@@ -29,7 +29,7 @@ while(have_posts()){
     <div class="row">
       <div class="col-md-4 side-menu">
         <!-- <h3 class='side-panel-header'><a href="<?php echo get_permalink($parent); ?>"><?php echo get_the_title($parent); ?></a></h3> -->
-        <ul class="side-panel-link-list">
+        <ul class="side-panel-link-list pagePageItem">
           <?php 
               if($parent){
                 $findChildrenOf = $parent;

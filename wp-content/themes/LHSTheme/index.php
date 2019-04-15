@@ -28,65 +28,82 @@
 
 		return $newMonth;
 	}
+
+	function substrwords($text, $maxchar, $end='...') {
+	    if (strlen($text) > $maxchar || $text == '') {
+	        $words = preg_split('/\s/', $text);      
+	        $output = '';
+	        $i      = 0;
+	        while (1) {
+	            $length = strlen($output)+strlen($words[$i]);
+	            if ($length > $maxchar) {
+	                break;
+	            } 
+	            else {
+	                $output .= " " . $words[$i];
+	                ++$i;
+	            }
+	        }
+	        $output .= $end;
+	    } 
+	    else {
+	        $output = $text;
+	    }
+	    return $output;
+	}
 ?>
 
 <!-- Slideshow container -->
-<div class="slideshow-container" style="height: 500px;">
-
-  <!-- Full-width images with number and caption text -->
-  <?php
-	  // $directory = get_theme_file_uri('images/Carousel');
-	  // echo $directory;
-	  // $files = scandir('http://localhost:8888/LatinaSafeHouse/wp-content/themes/LHSTheme/images/Carousel');
-	  // foreach($files as $file) {
-		 //  echo $file;
-	  // }
-  ?>
-	<div class="mySlides">
-    	<img src="<?php echo get_theme_file_uri('images/Carousel/6.png') ?>" style="width:100%">
-    	<div class="text">Caption Text</div>
-  	</div>
-  	<div class="mySlides">
-    	<img src="<?php echo get_theme_file_uri('images/guatemala-color-wall-blue.jpg') ?>" style="width:100%">
-    	<div class="text">Caption Text</div>
-  	</div>
-  	<div class="mySlides">
-    	<img src="<?php echo get_theme_file_uri('images/Carousel/10.png') ?>" style="width:100%">
-    	<div class="text">Caption Text</div>
-  	</div>
-  	<div class="mySlides">
-    	<img src="<?php echo get_theme_file_uri('images/Carousel/5.png') ?>" style="width:100%">
-    	<div class="text">Caption Text</div>
-  	</div>
-  	<div class="mySlides">
-    	<img src="<?php echo get_theme_file_uri('images/Carousel/7.png') ?>" style="width:100%">
-    	<div class="text">Caption Text</div>
-  	</div>
-  
-  <!-- Next and previous buttons -->
-  <a class="prev" >&#10094;</a>
-  <a class="next" >&#10095;</a>
-</div>
-<br>
-
-<!-- The dots/circles -->
-<div class="dotDiv" >
-  <span class="dot" id="dot1" ></span> 
-  <span class="dot" id="dot2" ></span> 
-  <span class="dot" id="dot3" ></span> 
-  <span class="dot" id="dot4" ></span> 
-  <span class="dot" id="dot5" ></span> 
+<div id="headerCarousel" class="carousel slide w-100" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#headerCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#headerCarousel" data-slide-to="1"></li>
+    <li data-target="#headerCarousel" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner header-inner">
+    <div class="carousel-item active">
+    	<div class="item item1" style="background-image: url(<?php echo get_theme_file_uri('images/Carousel/6.png') ?>)">
+    		<div class="carousel-caption">
+    			<a class="programsCarouselLink">Get Help</a>
+			</div>
+    	</div>
+    </div>
+    <div class="carousel-item">
+    	<div class="item item2" style="background-image: url(<?php echo get_theme_file_uri('images/guatemala-color-wall-blue.jpg') ?>)">
+    		<div class="container">
+    		<div class="carousel-caption">
+    			<a class="programsCarouselLink">Second Slide</a>
+			</div>
+			</div>
+    	</div>
+    </div>
+    <div class="carousel-item">
+    	<div class="item item3" style="background-image: url(<?php echo get_theme_file_uri('images/Carousel/10.png') ?>)">
+    		<div class="carousel-caption">
+    			<a class="programsCarouselLink">Third Slide</a>
+			</div>
+    	</div>
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#headerCarousel" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#headerCarousel" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
 </div>
 
 <div class="jumbotron jumbotron-fluid missionStatement">
-  <div class="container">
+  <div class="container-fluid">
     <h1 class="display-4">Our Mission</h1>
     <p class="lead">To provide bilingual and culturally sensitive services to Latina victims of domestic violence and their families.</p>
   </div>
 </div>
 
 <div class="row">
-	<div class="col-md lshEvents">
+	<div class="col-sm-12 col-md-6 lshEvents">
 		<h2 class="lshEventsNewsTitle">Events</h2>
 		<div class="scrollContainer">
 			<?php 
@@ -103,29 +120,29 @@
 				?>
 					<div class="row lshEventRow">
 						<div class="col-md-3">
-							<a class="event-summary__date t-center" href="#">
+							<a class="event-summary__date t-center" href="<?php echo get_permalink( $event, false ); ?>">
 			            		<span class="event-summary__month"><?php echo $month ?></span>
 			            		<span class="event-summary__day"><strong><?php echo $monthDay[1] ?></strong></span>  
 			          		</a>
 						</div>
 			          	<div class="col-md-8">
 			          		<div class="event-summary__content">
-					            <h5 class="event-summary__title"><a class="event-summary__content" href="#"><?php echo $event->post_title ?></a></h5>
-					            <p><?php echo $event->post_content ?><a href="#" class="">Learn more</a></p>
+					            <h5 class="event-summary__title"><a class="event-summary__content" href="<?php echo get_permalink( $event, false ); ?>"><?php echo $event->post_title ?></a></h5>
+					            <p><?php 
+					            	$text = $event->post_content;
+									$newtext = substrwords($text, 100);
+									echo $newtext;
+					            ?><a href="<?php echo get_permalink( $event, false ); ?>" class="">Learn more</a></p>
 					        </div>
 			          	</div>
 					</div>
-				   <!-- echo '<h4>' . $event->post_title . '</h4>';
-				   echo wpautop( $event->post_content ); -->
 			<?php
 				}
 				
 			 ?>
-			
-			
 		</div>
 	</div>
-	<div class="col-md lshNews">
+	<div class="col-sm-12 col-md-6 lshNews">
 		<h2 class="lshEventsNewsTitle">News</h2>
 		<div class="container scrollContainer">
 			<?php 
@@ -142,7 +159,9 @@
 		          	<div class="col-md-8">
 		          		<div class="event-summary__content">
 				            <h5 class="event-summary__title"><a class="event-summary__content" href="#"><?php the_title(); ?></a></h5>
-				            <p><?php the_content(); ?><a href="#" class="">Learn more</a></p>
+				            <p><?php 
+				            	the_excerpt();
+				            ?><a href="#" class="">Learn more</a></p>
 				        </div>
 		          	</div>
 	        	<!-- </div> -->
@@ -158,39 +177,39 @@
 
 <div class="container-fluid sponsorsContainer">
 	<div class="container-fluid text-center">
-    <div class="row mx-auto my-auto">
-        <div id="recipeCarousel" class="carousel slide w-100" data-ride="carousel" >
-            <div class="carousel-inner w-100" role="listbox">
-                <div class="carousel-item active">
-                    <img class="d-block col-3 img-fluid" src="<?php echo get_theme_file_uri('images/Sponsors/dMNSLogo.jpg') ?>">
-                </div>
-                <div class="carousel-item">
-                    <img class="d-block col-3 img-fluid" src="<?php echo get_theme_file_uri('images/Sponsors/unitedWayLogo.jpg') ?>">
-                </div>
-                <div class="carousel-item">
-                    <img class="d-block col-3 img-fluid" src="<?php echo get_theme_file_uri('images/Sponsors/firstBankLogo.png') ?>">
-                </div>
-                <div class="carousel-item">
-                    <img class="d-block col-3 img-fluid" src="<?php echo get_theme_file_uri('images/Sponsors/energyOutreachColLogo.jpg') ?>">
-                </div>
-                <div class="carousel-item">
-                    <img class="d-block col-3 img-fluid" src="<?php echo get_theme_file_uri('images/Sponsors/pyramidPrintLogo.png') ?>">
-                </div>
-                <div class="carousel-item">
-                    <img class="d-block col-3 img-fluid" src="http://placehold.it/350x180?text=6">
-                </div>
-            </div>
-            <a class="carousel-control-prev" href="#recipeCarousel" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#recipeCarousel" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
-    </div>
-</div>  
+	    <div class="row mx-auto my-auto">
+	        <div id="sponsorCarousel" class="carousel slide w-100" data-ride="carousel" >
+	            <div class="carousel-inner logo-inner w-100" role="listbox">
+	                <div class="carousel-item active">
+	                    <img class="d-block col-sm-6 col-md-3 img-fluid" src="<?php echo get_theme_file_uri('images/Sponsors/dMNSLogo.jpg') ?>">
+	                </div>
+	                <div class="carousel-item">
+	                    <img class="d-block col-sm-6 col-md-3 img-fluid" src="<?php echo get_theme_file_uri('images/Sponsors/unitedWayLogo.jpg') ?>">
+	                </div>
+	                <div class="carousel-item">
+	                    <img class="d-block col-sm-6 col-md-3 img-fluid" src="<?php echo get_theme_file_uri('images/Sponsors/firstBankLogo.png') ?>">
+	                </div>
+	                <div class="carousel-item">
+	                    <img class="d-block col-sm-6 col-md-3 img-fluid" src="<?php echo get_theme_file_uri('images/Sponsors/energyOutreachColLogo.jpg') ?>">
+	                </div>
+	                <div class="carousel-item">
+	                    <img class="d-block col-sm-6 col-md-3 img-fluid" src="<?php echo get_theme_file_uri('images/Sponsors/pyramidPrintLogo.png') ?>">
+	                </div>
+	                <div class="carousel-item">
+	                    <img class="d-block col-sm-6 col-md-3 img-fluid" src="http://placehold.it/350x180?text=6">
+	                </div>
+	            </div>
+	            <a class="carousel-control-prev" href="#sponsorCarousel" role="button" data-slide="prev">
+	                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+	                <span class="sr-only">Previous</span>
+	            </a>
+	            <a class="carousel-control-next" href="#sponsorCarousel" role="button" data-slide="next">
+	                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+	                <span class="sr-only">Next</span>
+	            </a>
+	        </div>
+	    </div>
+	</div>  
 </div>
 
 

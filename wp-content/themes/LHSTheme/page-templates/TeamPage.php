@@ -29,11 +29,10 @@ while(have_posts()){
     <div class="row">
       <div class="col-md-4 side-menu">
         <!-- <h3 class='side-panel-header'><a href="<?php echo get_permalink($parent); ?>"><?php echo get_the_title($parent); ?></a></h3> -->
-        <ul class="side-panel-link-list">
+        <ul class="side-panel-link-list pagePageItem">
           <?php 
               if($parent){
                 $findChildrenOf = $parent;
-                    
               }else{
                 $findChildrenOf = get_the_ID();
               }
@@ -109,14 +108,6 @@ while(have_posts()){
                 <p class="memberTitleEven">Mile High United Way - 2-1-1 Supervisor</p>
             </section>
             <img src="https://via.placeholder.com/125" class="memberImageEven">
-          </li>
-          <li class="memberItem lastMember">
-            <img src="https://via.placeholder.com/125" class="memberImage">
-            <section class="memberInfo">
-                <h3 class="memberName">Sister Leandra Schaller</h3>
-                <h5>Honorary Board Member</h5>
-                <p class="memberTitle">Sisters of St. Francis</p>
-            </section>
           </li>
         </ul>
       </div>
