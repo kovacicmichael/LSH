@@ -62,14 +62,14 @@
   </ol>
   <div class="carousel-inner header-inner">
     <div class="carousel-item active">
-    	<div class="item item1" style="background-image: url(<?php echo get_theme_file_uri('images/Carousel/6.png') ?>)">
+    	<div class="item item1" style="background-image: url(<?php echo get_theme_file_uri('images/CarouselOne.png') ?>)">
     		<div class="carousel-caption">
     			<a class="programsCarouselLink">Our Programs</a>
 			</div>
     	</div>
     </div>
     <div class="carousel-item">
-    	<div class="item item2" style="background-image: url(<?php echo get_theme_file_uri('images/guatemala-color-wall-blue.jpg') ?>)">
+    	<div class="item item2" style="background-image: url(<?php echo get_theme_file_uri('images/CarouselTwo.jpg') ?>)">
     		<div class="container">
     		<div class="carousel-caption">
     			<a class="programsCarouselLink">Second Slide</a>
@@ -78,7 +78,7 @@
     	</div>
     </div>
     <div class="carousel-item">
-    	<div class="item item3" style="background-image: url(<?php echo get_theme_file_uri('images/Carousel/10.png') ?>)">
+    	<div class="item item3" style="background-image: url(<?php echo get_theme_file_uri('images/CarouselThree.png') ?>)">
     		<div class="carousel-caption">
     			<a class="programsCarouselLink">Support Our Cause</a>
 			</div>
@@ -195,9 +195,9 @@
 	                <div class="carousel-item">
 	                    <img class="d-block col-sm-6 col-md-3 img-fluid" src="<?php echo get_theme_file_uri('images/Sponsors/pyramidPrintLogo.png') ?>">
 	                </div>
-	                <div class="carousel-item">
+	                <!-- <div class="carousel-item">
 	                    <img class="d-block col-sm-6 col-md-3 img-fluid" src="http://placehold.it/350x180?text=6">
-	                </div>
+	                </div> -->
 	            </div>
 	            <a class="carousel-control-prev" href="#sponsorCarousel" role="button" data-slide="prev">
 	                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
