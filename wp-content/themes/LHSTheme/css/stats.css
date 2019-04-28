@@ -1,0 +1,239 @@
+
+/*body, html {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "fira-sans-2", Verdana, sans-serif;
+}*/
+
+#q-graph {
+  display: block; /* fixes layout wonkiness in FF1.5 */
+  position: relative; 
+  width: 600px; 
+  height: 300px;
+  margin: 1.1em 0 0; 
+  padding: 0;
+  background: transparent;
+  font-size: 11px;
+  margin-top: 50px !important;
+  margin-bottom: 50px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+#q-graph caption {
+  caption-side: top; 
+  width: 600px;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  top: -40px;
+  left: 30px;
+  position: relative; 
+  z-index: 10;
+  font-weight: bold;
+}
+
+#q-graph tr, #q-graph th, #q-graph td { 
+  position: absolute;
+  bottom: 0; 
+  width: 150px; 
+  z-index: 2;
+  margin: 0; 
+  padding: 0;
+  text-align: center;
+}
+
+#q-graph td {
+  transition: all .3s ease;
+  
+  &:hover {
+    background-color: desaturate(#85144b, 100);
+    opacity: .9;
+    color: white;
+  }
+}
+  
+#q-graph thead tr {
+  left: 100%; 
+  top: 50%; 
+  bottom: auto;
+  margin: -2.5em 0 0 5em;}
+#q-graph thead th {
+  width: 7.5em; 
+  height: auto; 
+  padding: 0.5em 1em;
+}
+#q-graph thead th.sent {
+  top: 0; 
+  left: 0; 
+  line-height: 2;
+}
+#q-graph thead th.paid {
+  top: 2.75em; 
+  line-height: 2;
+  left: 0; 
+}
+
+#q-graph tbody tr {
+  height: 296px;
+  padding-top: 2px;
+  /*border-right: 1px dotted #C4C4C4; */
+  color: #AAA;
+}
+#q-graph #scale {
+  left: 0;
+}
+#q-graph #q1 {left: 75px;}
+#q-graph #q2 {left: 225px;}
+#q-graph #q3 {left: 375px; border-right: 1px dotted #C4C4C4; }
+#q-graph tbody th {bottom: -1.75em; vertical-align: top;
+font-weight: normal; color: #333;}
+#q-graph .bar {
+  width: 60px; 
+  border: 1px solid; 
+  border-bottom: none; 
+  color: #000;
+}
+#q-graph .bar p {
+  margin: 5px 0 0; 
+  padding: 0;
+  opacity: .4;
+}
+#q-graph .sent {
+  left: 13px; 
+  background-color: $color-sent;
+  border-color: transparent;
+}
+#q-graph .paid {
+  left: 77px; 
+  background-color: $color-paid;
+  border-color: transparent;
+}
+
+
+#ticks {
+  position: relative; 
+  top: -300px; 
+  left: 2px;
+  width: 596px; 
+  height: 300px; 
+  z-index: 1;
+  margin-bottom: -300px;
+  font-size: 10px;
+  font-family: "fira-sans-2", Verdana, sans-serif;
+}
+
+#ticks .tick {
+  position: relative; 
+  border-bottom: 1px dotted #C4C4C4; 
+  width: 600px;
+}
+
+#ticks .tick p {
+  position: absolute; 
+  left: -5em; 
+  top: -0.8em; 
+  margin: 0 0 0 0.5em;
+}
+
+.populationScaleBarNumber{
+  width: 75px !important;
+}
+
+#scale{
+  width: 75px !important;
+  border-right: 1px dotted #C4C4C4; 
+}
+
+#zeroScale{
+
+}
+
+#tenScale{
+  height:50px;
+}
+
+#twentyScale{
+  height: 100px;
+}
+
+#thirtyScale{
+  height: 150px;
+}
+
+#fortyScale{
+  height: 200px;
+}
+
+#fiftyScale{
+  height: 250px;
+}
+
+#sixtyScale{
+  height:300px;
+}
+
+#womenBar{
+    height: 220px;
+    background-color: #b86ad0;
+    width: 50% !important;
+    margin-left: 25% !important;
+}
+
+#boysBar{
+    height: 300px;
+    background-color: #1a8b9d;
+    width: 50% !important;
+    margin-left: 25% !important;
+}
+
+#girlsBar{
+    height: 275px;
+    background-color: #773891;
+    width: 50% !important;
+    margin-left: 25% !important;
+}
+
+.tableTitle{
+    bottom: -3.25em !important;
+    width: 600px !important;
+    position: absolute !important;
+}
+
+.wp-block-image .aligncenter {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 53%;
+}
+
+.wp-block-image.statsImg img{
+    max-width: 100%;
+    width: 42%;
+    float: left;
+
+}
+
+ #triangle-bottomleft {
+    width: 0;
+    height: 0;
+    margin-top: 20px !important;
+    border-bottom: 40px solid #1a8b9d;
+    border-right: 100px solid transparent;
+    float: left;
+}
+
+#triangle-bottomright {
+    width: 0;
+    height: 0;
+    margin-top: 20px !important;
+    border-bottom: 40px solid #1a8b9d;
+    border-left: 100px solid transparent;
+    float: left;
+  }
+
+

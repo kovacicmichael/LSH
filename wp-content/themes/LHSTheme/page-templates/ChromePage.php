@@ -25,9 +25,7 @@ while(have_posts()){
       <div class="col-md-4 top-page-flag-green">
           <a href="<?php echo get_permalink($parent); ?>" id="flagTitle"><?php echo get_the_title($parent); ?></a>
       </div>
-      <div class="browserLogo">
-          <img src="<?php echo get_theme_file_uri('images/chrome-logo.png'); ?>" height="50px" width="75px" >
-      </div>
+      
     </div>
     <div class="row">
       <div class="col-md-4 side-menu">
@@ -40,10 +38,26 @@ while(have_posts()){
               }else{
                 $findChildrenOf = get_the_ID();
               }
-              wp_list_pages(array(
-                  'title_li' => null,
-                  'child_of' => $findChildrenOf
-              ));
+              $subPagesArray = get_pages(array('child_of' => $findChildrenOf, 'post_type' => 'page'));
+              
+              if(count($subPagesArray) > 0)
+              {
+                //echo '<ul class="pagePageItem" >';
+                for($i=0; $i<count($subPagesArray); $i++) {
+                  //foreach($subPagesArray as $page)
+                  //{ 
+                    $postID =  get_the_id();
+                    $pageID =  $subPagesArray[$i]->ID;
+
+                    ?>
+                    <li class="page_item <?php echo ($postID == $pageID) ? 'current_page_item' : '' ?>">
+                      <a class="subMenuHeaderPage" href="<?php echo get_page_link($subPagesArray[$i]->ID) ?>"><?php echo $subPagesArray[$i]->post_title ?></a>
+                      <div class="navArrowBlank">&#60;</div>
+                    </li>
+                  <?php
+                  }
+                //echo '</ul>';
+              } 
            ?>
         </ul>
         

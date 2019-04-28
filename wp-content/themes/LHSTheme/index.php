@@ -64,7 +64,7 @@
     <div class="carousel-item active">
     	<div class="item item1" style="background-image: url(<?php echo get_theme_file_uri('images/Carousel/6.png') ?>)">
     		<div class="carousel-caption">
-    			<a class="programsCarouselLink">Get Help</a>
+    			<a class="programsCarouselLink">Our Programs</a>
 			</div>
     	</div>
     </div>
@@ -80,7 +80,7 @@
     <div class="carousel-item">
     	<div class="item item3" style="background-image: url(<?php echo get_theme_file_uri('images/Carousel/10.png') ?>)">
     		<div class="carousel-caption">
-    			<a class="programsCarouselLink">Third Slide</a>
+    			<a class="programsCarouselLink">Support Our Cause</a>
 			</div>
     	</div>
     </div>

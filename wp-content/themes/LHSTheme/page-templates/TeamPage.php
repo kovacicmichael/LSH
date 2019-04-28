@@ -33,19 +33,68 @@ while(have_posts()){
           <?php 
               if($parent){
                 $findChildrenOf = $parent;
+                    
               }else{
                 $findChildrenOf = get_the_ID();
               }
-              wp_list_pages(array(
-                  'title_li' => null,
-                  'child_of' => $findChildrenOf
-              ));
+              $args = array( 
+                      'child_of' => $findChildrenOf, 
+                      'parent' => $findChildrenOf,
+                      'hierarchical' => 0,
+                      'sort_column' => 'menu_order', 
+                      'sort_order' => 'asc',
+                      'post_type' => 'page'
+              );
+
+              $subPagesArray = get_pages($args);
+              
+              if(count($subPagesArray) > 0)
+              {
+                //echo '<ul class="pagePageItem" >';
+                for($i=0; $i<count($subPagesArray); $i++) {
+                  //foreach($subPagesArray as $page)
+                  //{ 
+                    $postID =  get_the_id();
+                    $pageID =  $subPagesArray[$i]->ID;
+
+                    ?>
+                    <li class="page_item <?php echo ($postID == $pageID) ? 'current_page_item' : '' ?>">
+                      <a class="subMenuHeaderPage" href="<?php echo get_page_link($subPagesArray[$i]->ID) ?>"><?php echo $subPagesArray[$i]->post_title ?></a>
+
+                      <?php 
+                        // $args = array( 'post_type' => 'attachment', 'numberposts' => 7, 'post_status' => null, 'post_parent' => $subPages[$i]->ID, 'orderby' => 'post_title', 'order' => 'DESC' );
+
+                          $subSubPages = get_pages(array('child_of' => $subPagesArray[$i]->ID, 'post_type' => 'page'));
+                          
+                          if(count($subSubPages) >  0){
+                              echo '<div class="navArrowPages">&#60;</div>';
+                              echo '<ul class="subPageAttatchments dropdown-pages-content collapsible" data-collapsed=true >';
+
+                              foreach ($subSubPages as $subPage) {
+
+                                $id = $subPage->ID;
+                                echo "<li class='page_item_sub";
+                                echo ($postID == $subPage->ID) ? " current_page_item" : "";
+                                echo "'>";
+                                echo "<a href='";
+                                echo get_page_link( $id );
+                                echo "'>";
+                                echo $subPage->post_title;
+                                echo "</a>";
+                                echo "</li>";
+                              }
+
+                              echo '</ul>';
+                          }else{
+                            echo '<div class="navArrowBlank">&#60;</div>';
+                          }
+                       ?>
+                    </li>
+                  <?php
+                  }
+                //echo '</ul>';
+              }
            ?>
-          <!-- <li class="side-panel-link-item"><a href="<?php echo site_url('why-latina') ?>">Why Latina</a></li>
-          <li class="side-panel-link-item"><a href="<?php echo site_url('dv-in-the-latinx-community') ?>">DV in the Latinx Community</a></li>
-          <li class="side-panel-link-item"><a href="<?php echo site_url('machismo-myths') ?>">Machismo Myths</a></li>
-          <li class="side-panel-link-item"><a href="<?php echo site_url('red-flags') ?>">Red Flags</a></li>
-          <li class="side-panel-link-item"><a href="<?php echo site_url('healthy-relationships') ?>">Healthy Relationships</a></li> -->
         </ul>
         
         

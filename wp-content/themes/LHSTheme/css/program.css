@@ -1,0 +1,28 @@
+
+
+.programImageLine{
+	height: 5px;
+    background-color: #5d5f61;
+    margin-top: 58px !important;
+    width: 75%;
+    display: inline-block;
+    /* margin-bottom: auto !important; */
+}
+
+.allProgramsImageLine{
+	height: 5px;
+    background-color: #5d5f61;
+    margin-top: 58px !important;
+    width: 5%;
+    display: inline-block;
+    /* margin-bottom: auto !important; */
+}
+
+.wp-block-image.programImg img{
+    max-width: 100%;
+    width: 20%;
+}
+
+.programImg{
+  display: inline;
+}

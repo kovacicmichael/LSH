@@ -77,7 +77,7 @@
 			    </ul>
 		  	</div>
 		  	<div class="bannersGroup">
-			  	<a href="#" class="banners donateBanner">
+			  	<a href="<?php echo site_url('donate') ?>" class="banners donateBanner">
 				    	<div class="bannerText">DONATE</div>
 				</a>
 				<a href="#" class="banners espanolBanner">
@@ -102,65 +102,116 @@
 		        <li class="sidebar-nav-item">
 		          <a class="js-scroll-trigger" href="<?php echo site_url() ?>">Home</a>
 		        </li>
-		        <li class="sidebar-nav-item dropdownSideMenu">
-		          <a class="js-scroll-trigger subMenuHeader" href="<?php echo site_url('about-us') ?>">About Us</a>
-		          <div class="navArrows">&#60;</div>
-		          <ul class="dropdown-content collapsible" data-collapsed=true>
-		          	<?php 
-		          	$page = get_page_by_title( 'About Us' );
-		          	$id = $page->ID;
-		              wp_list_pages(array(
-		                  'title_li' => null,
-		                  'child_of' => $id
-		              ));
-		            ?>
-		          </ul>
-		        </li>
-		        <li class="sidebar-nav-item dropdownSideMenu">
-		          <a class="js-scroll-trigger subMenuHeader" href="<?php echo site_url('get-help') ?>">Get Help</a>
-		          <div class="navArrows">&#60;</div>
-		          <ul class="dropdown-content collapsible" data-collapsed=true >
-		          	<?php 
-		          	$page = get_page_by_title( 'Get Help' );
-		          	$id = $page->ID;
-		              wp_list_pages(array(
-		                  'title_li' => null,
-		                  'child_of' => $id
-		              ));
-		            ?>
-		          </ul>
-		        </li>
-		        <li class="sidebar-nav-item dropdownSideMenu">
-		          <a class="js-scroll-trigger subMenuHeader" href="<?php echo site_url('donate') ?>">Donate</a>
-		          <div class="navArrows">&#60;</div>
-		          <ul class="dropdown-content collapsible" data-collapsed=true>
-		          	<?php 
-		          	$page = get_page_by_title( 'Donate' );
-		          	$id = $page->ID;
-		              wp_list_pages(array(
-		                  'title_li' => null,
-		                  'child_of' => $id
-		              ));
-		            ?>
-		          </ul>
-		        </li>
+
+		        <?php 
+		        	$currentPostID =  get_the_id();
+
+		        	$args = array( 
+                      'parent' => 0,
+                      'post_type' => 'page',
+                      'exclude' => array(118)
+              		);
+		        	$pages = get_pages($args);
+
+		        	foreach ($pages as $page) {
+		        		// echo $page->post_title;
+		        		
+		        		  echo '<li class="sidebar-nav-item dropdownSideMenu';
+		        		  echo ($currentPostID == $page->ID) ? ' current_page_item' : '';
+		        		  echo '">';
+				          echo '<a class="js-scroll-trigger subMenuHeader" href="';
+				          echo get_page_link($page->ID);
+				          echo '">'; 
+				          echo $page->post_title; 
+				          echo '</a>';
+
+				          $args = array( 
+		                      'child_of' => $page->ID, 
+		                      'parent' => $page->ID,
+		                      'hierarchical' => 0,
+		                      'sort_column' => 'menu_order', 
+		                      'sort_order' => 'asc',
+		                      'post_type' => 'page'
+		              		);
+			        		$subPages = get_pages($args);
+			        		if(count($subPages) > 0){
+			        			echo '<div class="navArrows">&#60;</div>';
+			        			echo '<ul class="dropdown-content collapsible" data-collapsed="true">';
+
+			        			foreach($subPages as $page){
+			        			echo '<li class="nav_item_sub';
+			        			echo ($currentPostID == $page->ID) ? ' current_page_item' : '';
+			        			echo '">';
+			        				echo '<a href="';
+			        				echo get_page_link($page->ID);
+			        				echo '">';
+			        				echo $page->post_title;
+			        				echo '</a>';
+
+			        				if($page->post_title == 'Newsletter'){
+			        					$args = array( 'post_type' => 'attachment', 'numberposts' => 7, 'post_status' => null, 'post_parent' => $page->ID, 'orderby' => 'post_title', 'order' => 'DESC' );
+
+                      					$attachments = get_posts( $args );
+
+                      					if(count($attachments) >  0){
+			                              echo '<div class="subNavArrows">&#60;</div>';
+			                              echo '<ul class="subPageAttatchments dropdown-content collapsible" data-collapsed=true >';
+
+			                              foreach ($attachments as $subPage) {
+
+			                                $id = $subPage->ID;
+			                                echo "<li class='nav_item_sub nested_sub_item";
+			                                echo ($currentPostID == $id) ? ' current_page_item' : '';
+			                                echo "'>";
+			                                echo "<a href='";
+			                                echo get_page_link( $id );
+			                                echo "'>";
+			                                echo $subPage->post_title;
+			                                echo "</a>";
+			                                echo "</li>";
+			                              }
+
+			                              echo '</ul>';
+			                          }
+			        				}else{
+			        					$subSubPages = get_pages(array('child_of' => $page->ID, 'post_type' => 'page'));
+                          
+			                          if(count($subSubPages) >  0){
+			                              echo '<div class="subNavArrows">&#60;</div>';
+			                              echo '<ul class="subPageAttatchments dropdown-content collapsible" data-collapsed=true >';
+
+			                              foreach ($subSubPages as $subPage) {
+
+			                                $id = $subPage->ID;
+			                                echo "<li class='nav_item_sub nested_sub_item";
+			                                echo ($currentPostID == $id) ? " current_page_item" : "";
+			                                echo "'>";
+			                                echo "<a href='";
+			                                echo get_page_link( $id );
+			                                echo "'>";
+			                                echo $subPage->post_title;
+			                                echo "</a>";
+			                                echo "</li>";
+			                              }
+
+			                              echo '</ul>';
+			                          }
+			        				}
+			        				  
+			        			echo '</li>';
+			        			}
+
+			        			echo '</ul>';
+			        		}
+				        echo '</li>';
+		        	}
+		         ?>
+		        
+		        
 		        <li class="sidebar-nav-item">
-		          <a class="js-scroll-trigger" href="contact">Events</a>
+		          <a class="js-scroll-trigger" href="<?php echo site_url('events') ?>">Events</a>
 		        </li>
-		        <li class="sidebar-nav-item dropdownSideMenu">
-		          <a class="js-scroll-trigger subMenuHeader" href="<?php echo site_url('stay-connected') ?>">Stay Connected</a>
-		          <div class="navArrows">&#60;</div>
-		          <ul class="dropdown-content collapsible" data-collapsed=true>
-		          	<?php 
-		          	$page = get_page_by_title( 'Stay Connected' );
-		          	$id = $page->ID;
-		              wp_list_pages(array(
-		                  'title_li' => null,
-		                  'child_of' => $id
-		              ));
-		            ?>
-		          </ul>
-		        </li>
+		        
 		        <li class="sidebar-nav-item">
 		          <a class="js-scroll-trigger" href="contact">Español</a>
 		        </li>

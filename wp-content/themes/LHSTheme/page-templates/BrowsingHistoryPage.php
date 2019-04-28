@@ -29,7 +29,7 @@ while(have_posts()){
     <div class="row">
       <div class="col-md-4 side-menu">
         <!-- <h3 class='side-panel-header'><a href="<?php echo get_permalink($parent); ?>"><?php echo get_the_title($parent); ?></a></h3> -->
-        <ul class="side-panel-link-list">
+        <ul class="side-panel-link-list pagePageItem">
           <?php 
               if($parent){
                 $findChildrenOf = $parent;
@@ -37,10 +37,26 @@ while(have_posts()){
               }else{
                 $findChildrenOf = get_the_ID();
               }
-              wp_list_pages(array(
-                  'title_li' => null,
-                  'child_of' => $findChildrenOf
-              ));
+              $subPagesArray = get_pages(array('child_of' => $findChildrenOf, 'post_type' => 'page'));
+              
+              if(count($subPagesArray) > 0)
+              {
+                //echo '<ul class="pagePageItem" >';
+                for($i=0; $i<count($subPagesArray); $i++) {
+                  //foreach($subPagesArray as $page)
+                  //{ 
+                    $postID =  get_the_id();
+                    $pageID =  $subPagesArray[$i]->ID;
+
+                    ?>
+                    <li class="page_item <?php echo ($postID == $pageID) ? 'current_page_item' : '' ?>">
+                      <a class="subMenuHeaderPage" href="<?php echo get_page_link($subPagesArray[$i]->ID) ?>"><?php echo $subPagesArray[$i]->post_title ?></a>
+                      <div class="navArrowBlank">&#60;</div>
+                    </li>
+                  <?php
+                  }
+                //echo '</ul>';
+              } 
            ?>
           <!-- <li class="side-panel-link-item"><a href="<?php echo site_url('why-latina') ?>">Why Latina</a></li>
           <li class="side-panel-link-item"><a href="<?php echo site_url('dv-in-the-latinx-community') ?>">DV in the Latinx Community</a></li>

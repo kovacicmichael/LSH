@@ -1,0 +1,126 @@
+.donateAmountImage{
+	display: inline;
+	width: 25% !important;
+}
+
+.donateAmountImage > img{
+	display: inline;
+	max-width: 16% !important;
+}
+
+.donateAmountInfo{
+	/*height: 200px;*/
+	background-color: grey;
+	width: 100%;
+	font-size: 20pt;
+	color: white;
+	margin-top: 10px !important;
+	padding:15px;
+	display: none;
+}
+
+.donateImages{
+	transition: all .3s;
+}
+
+.donateImages:hover{
+	transform: rotate(10deg);
+}
+
+#tenDollarsInfo{
+	background-color: #01495f;
+	box-shadow: 0px 10px 15px #01495f;
+}
+
+#twentyFiveDollarsInfo{
+	background-color: #b86ad1;
+	box-shadow: 0px 10px 15px #b86ad1;
+}
+
+#fiftyDollarsInfo{
+	background-color: #0f89a9;
+	box-shadow: 0px 10px 15px #0f89a9;
+}
+
+#seventyFiveDollarsInfo{
+	background-color: #753991;
+	box-shadow: 0px 10px 15px #753991;
+}
+
+#oneHundredDollarsInfo{
+	background-color: #7fb8c6;
+	box-shadow: 0px 10px 15px #7fb8c6;
+}
+
+#oneHundredFiftyDollarsInfo{
+	background-color: #5d46ba;
+	box-shadow: 0px 10px 15px #5d46ba;
+}
+
+#oneThousandInfo{
+	background-color: #b86ad1;
+	box-shadow: 0px 10px 15px #b86ad1;
+}
+
+#oneThousandFiveInfo{
+	background-color: #0f89a9;
+	box-shadow: 0px 10px 15px #0f89a9;
+}
+
+#threeThousandInfo{
+	background-color: #753991;
+	box-shadow: 0px 10px 15px #753991;
+}
+
+#fiveThousandInfo{
+	background-color: #7fb8c6;
+	box-shadow: 0px 10px 15px #7fb8c6;
+}
+
+#sevenThousandFiveInfo{
+	background-color: #20616c;
+	box-shadow: 0px 10px 15px #20616c;
+}
+
+#tenThousandInfo{
+	background-color: #5d46ba;
+	box-shadow: 0px 10px 15px #5d46ba;
+}
+
+.donateButton{
+	text-decoration: none !important;
+	transition: opacity .3s;
+}
+
+.donateButton:hover{
+	text-decoration: none !important;
+	opacity: .8;
+}
+
+.paypalGivingInfoLink{
+	text-decoration: none;
+    color: purple;
+}
+
+.paypalGivingInfoLink:hover{
+	text-decoration: underline;
+    color: purple;
+}
+
+.oddfundraiseImage{
+	width: 35% !important;
+	float: left;
+	margin-right: 15px !important;
+}
+
+.oddTextField{
+}
+
+.evenfundraiseImage{
+	width: 35% !important;
+	float: right;
+	margin-left: 15px !important;
+}
+
+
+

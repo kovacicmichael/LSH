@@ -35,28 +35,25 @@ while(have_posts()){
                   'title_li' => null,
                   'child_of' => $findChildrenOf
               ));
-
-              if($subPages)
+              
+              if(count($subPages) > 0)
               {
-                echo '<ul class="pagePageItem" >';
-                  foreach($subPages as $page)
-                  { 
+                for($i=0; $i<count($subPages); $i++) {
                     $postID =  get_the_id();
-                    $pageID =  $page->ID;
+                    $pageID =  $subPages[$i]->ID;
                   ?>
                   <li class="page_item <?php echo ($postID == $pageID) ? 'current_page_item' : '' ?>">
-                    <a class="subMenuHeaderPage" href="<?php echo get_page_link($page->ID) ?>"><?php echo $page->post_title ?></a>
+                    <a class="subMenuHeaderPage" href="<?php echo get_page_link($subPages[$i]->ID) ?>"><?php echo $subPages[$i]->post_title ?></a>
                     <?php  
-                      $args = array( 'post_type' => 'attachment', 'numberposts' => 7, 'post_status' => null, 'post_parent' => $page->ID, 'orderby' => 'post_title', 'order' => 'DESC' );
+                      $args = array( 'post_type' => 'attachment', 'numberposts' => 7, 'post_status' => null, 'post_parent' => $subPages[$i]->ID, 'orderby' => 'post_title', 'order' => 'DESC' );
 
                       $attachments = get_posts( $args );
-                      
-                      if($attachments){
+                      if(count($attachments) >  0){
                         echo '<div class="navArrowPages">&#60;</div>';
-                        echo '<ul class="subPageAttatchments dropdown-content collapsible" data-collapsed=true >';
+                        echo '<ul class="subPageAttatchments dropdown-pages-content collapsible" data-collapsed=true >';
 
                         foreach ($attachments as $attachment) {
-                          $id = $attachment -> ID;
+                          $id = $attachment->ID;
                           echo "<li class='page_item_sub'>";
                           echo wp_get_attachment_link( $id, null, true );
                           echo "</li>";
@@ -65,23 +62,17 @@ while(have_posts()){
                       }else{
                         echo '<div class="navArrowBlank">&#60;</div>';
                       }
-
-                      
                       ?>
                   </li>
                   <?php
                   }
-                echo '</ul>';
               } 
-
-              
-
            ?>
         </ul>
       </div>
       <div class="col-md-7 generic-content">
         <?php 
-          get_the_content(); 
+          the_content(); 
         ?>
       </div>
     </div>

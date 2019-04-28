@@ -3,16 +3,33 @@
 <?php get_header();
 
 while(have_posts()){
-	the_post(); ?>
+	the_post(); 
+  $parent = wp_get_post_parent_id(get_the_ID());
+  $parentPost = get_post($parent);
 
+  if($parentPost->post_parent){
+    $parent = wp_get_post_parent_id($parentPost->ID);
+  }
+
+  function IsNestedPage(){
+    $parent = wp_get_post_parent_id(get_the_ID());
+    
+    $parentPost = get_post($parent);
+
+    if($parentPost->post_parent){
+      return true;
+    }else{
+      return false;
+    }
+  };
+
+  ?>
 	
 	<div class="fluid-container">
-    <div class="jumbotron programsJumbotron" style="background-image: url(<?php echo get_theme_file_uri('images/clear-glasses.jpg'); ?>);">
+    <div class="jumbotron programsJumbotron" style="background-image: url(<?php echo get_theme_file_uri('images/about-us.jpg'); ?>);">
       <div class="page-banner__content container container--narrow">
-        <h1 class="page-banner__title"><?php the_title(); ?></h1>
-        <div class="page-banner__intro">
-          <p>TODO</p>
-        </div>
+        <h1 class="page-banner__title"><?php (IsNestedPage()) ? '' : the_title()?></h1>
+        
       </div> 
     </div> 
   </div>
@@ -22,37 +39,78 @@ while(have_posts()){
     </div> -->
     <div class="row">
       <div class="col-md-4 top-page-flag-green">
-          <h1 class="flagTitle"><?php the_title(); ?></h1>
+          <a href="<?php echo get_permalink($parent); ?>" id="flagTitle"><?php echo get_the_title($parent); ?></a>
       </div>
     </div>
     <div class="row">
       <div class="col-md-4 side-menu">
-        <ul class="side-panel-link-list">
+        <ul class="side-panel-link-list pagePageItem">
           <?php 
-              $parent = wp_get_post_parent_id(get_the_ID());
               if($parent){
                 $findChildrenOf = $parent;
-                    wp_list_pages(array(
-                      'title_li' => null,
-                      'child_of' => 34
-
-                    ));
+                    
               }else{
                 $findChildrenOf = get_the_ID();
               }
-            wp_list_pages(array(
-                'title_li' => null,
-                'child_of' => 34
+              $args = array( 
+                      'child_of' => $findChildrenOf, 
+                      'parent' => $findChildrenOf,
+                      'hierarchical' => 0,
+                      'sort_column' => 'menu_order', 
+                      'sort_order' => 'asc',
+                      'post_type' => 'page'
+              );
 
-            ));
+              $subPagesArray = get_pages($args);
+              
+              if(count($subPagesArray) > 0)
+              {
+                //echo '<ul class="pagePageItem" >';
+                for($i=0; $i<count($subPagesArray); $i++) {
+                  //foreach($subPagesArray as $page)
+                  //{ 
+                    $postID =  get_the_id();
+                    $pageID =  $subPagesArray[$i]->ID;
+
+                    ?>
+                    <li class="page_item <?php echo ($postID == $pageID) ? 'current_page_item' : '' ?>">
+                      <a class="subMenuHeaderPage" href="<?php echo get_page_link($subPagesArray[$i]->ID) ?>"><?php echo $subPagesArray[$i]->post_title ?></a>
+
+                      <?php 
+                        // $args = array( 'post_type' => 'attachment', 'numberposts' => 7, 'post_status' => null, 'post_parent' => $subPages[$i]->ID, 'orderby' => 'post_title', 'order' => 'DESC' );
+
+                          $subSubPages = get_pages(array('child_of' => $subPagesArray[$i]->ID, 'post_type' => 'page'));
+                          
+                          if(count($subSubPages) >  0){
+                              echo '<div class="navArrowPages">&#60;</div>';
+                              echo '<ul class="subPageAttatchments dropdown-pages-content collapsible" data-collapsed=true >';
+
+                              foreach ($subSubPages as $subPage) {
+
+                                $id = $subPage->ID;
+                                echo "<li class='page_item_sub";
+                                echo ($postID == $subPage->ID) ? " current_page_item" : "";
+                                echo "'>";
+                                echo "<a href='";
+                                echo get_page_link( $id );
+                                echo "'>";
+                                echo $subPage->post_title;
+                                echo "</a>";
+                                echo "</li>";
+                              }
+
+                              echo '</ul>';
+                          }else{
+                            echo '<div class="navArrowBlank">&#60;</div>';
+                          }
+                       ?>
+                    </li>
+                  <?php
+                  }
+                //echo '</ul>';
+              }
            ?>
-          <li class="side-panel-link-item"><a href="<?php echo site_url('about-us') ?>">About Us</a></li>
-          <li class="side-panel-link-item"><a href="<?php echo site_url('our-mission') ?>">Our Mission and Vision</a></li>
-          <li class="side-panel-link-item"><a href="<?php echo site_url('our-programs') ?>">Our Programs</a></li>
-          <li class="side-panel-link-item"><a href="<?php echo site_url('our-team') ?>">Our Team</a></li>
-          <li class="side-panel-link-item"><a href="<?php echo site_url('our-partners') ?>">Our Partners</a></li>
-          <li class="side-panel-link-item"><a href="<?php echo site_url('our-survivors') ?>">Our Survivors</a></li>
-          <li class="side-panel-link-item"><a href="<?php echo site_url('our-statistics') ?>">Our Statistics</a></li>
+          
         </ul>
         
         
