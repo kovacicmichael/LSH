@@ -3,7 +3,7 @@
 Plugin Name: Media Library Folders for WordPress
 Plugin URI: http://maxgalleria.com
 Description: Gives you the ability to adds folders and move files in the WordPress Media Library.
-Version: 4.3.9
+Version: 5.0.0
 Author: Max Foundry
 Author URI: http://maxfoundry.com
 
@@ -44,7 +44,7 @@ class MaxGalleriaMediaLib {
 
 	public function set_global_constants() {	
 		define('MAXGALLERIA_MEDIA_LIBRARY_VERSION_KEY', 'maxgalleria_media_library_version');
-		define('MAXGALLERIA_MEDIA_LIBRARY_VERSION_NUM', '4.3.9');
+		define('MAXGALLERIA_MEDIA_LIBRARY_VERSION_NUM', '5.0.0');
 		define('MAXGALLERIA_MEDIA_LIBRARY_IGNORE_NOTICE', 'maxgalleria_media_library_ignore_notice');
 		define('MAXGALLERIA_MEDIA_LIBRARY_PLUGIN_NAME', trim(dirname(plugin_basename(__FILE__)), '/'));
 		define('MAXGALLERIA_MEDIA_LIBRARY_PLUGIN_DIR', WP_PLUGIN_DIR . '/' . MAXGALLERIA_MEDIA_LIBRARY_PLUGIN_NAME);
@@ -430,12 +430,15 @@ class MaxGalleriaMediaLib {
     
     $attached_file = get_post_meta($post_id, '_wp_attached_file', true);
     $folder_path = dirname($attached_file);
+    error_log("get_default_folder $folder_path");
     $upload_folder_id = get_option(MAXGALLERIA_MEDIA_LIBRARY_UPLOAD_FOLDER_ID);
+    error_log("upload_folder_id $upload_folder_id");
     
     if($folder_path == '.') {
       $folder_id = $upload_folder_id;
     } else {
-      $folder_id = $this->get_parent_by_name($folder_path);      
+      $folder_id = $this->get_parent_by_name($folder_path);
+      error_log("get_parent_by_name $folder_id");
     }
     return $folder_id;
   }
@@ -5124,21 +5127,14 @@ AND meta_key = '_wp_attached_file'";
     return $message;
     
   }
-  
-//add_action('init','do_stuff');
-//function do_stuff(){
-//  $current_user = wp_get_current_user();
-//  // ...
-//}
-
+    
   public function get_upload_status() {
     $data = get_userdata(get_current_user_id());
-
-    if(is_object($data))
-      $this->current_user_can_upload = $data->allcaps['upload_files'];
+    if (!is_object($data) || !isset($data->allcaps['upload_files']))
+      $this->current_user_can_upload = false;
     else
-      $this->current_user_can_upload = false;   
-  }    
+      $this->current_user_can_upload = $data->allcaps['upload_files'];
+  }  
           	
 }
 
