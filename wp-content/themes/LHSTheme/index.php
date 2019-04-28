@@ -142,6 +142,7 @@
 			 ?>
 		</div>
 	</div>
+	
 	<div class="col-sm-12 col-md-6 lshNews">
 		<h2 class="lshEventsNewsTitle">News</h2>
 		<div class="container scrollContainer">
