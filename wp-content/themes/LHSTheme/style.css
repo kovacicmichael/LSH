@@ -289,7 +289,8 @@ background-position: center top;
 .carousel-inner.logo-inner .carousel-item-right.active,
 .carousel-inner.logo-inner .carousel-item-next {
   transform: translateX(25%);
-  overflow: hidden;
+  overflow: visible !important;
+  display: none !important;
 }
 
 .carousel-inner.logo-inner .carousel-item-left.active, 
@@ -311,18 +312,82 @@ background-position: center top;
 @media screen and (max-width: 770px) {
     .carousel-inner.logo-inner .carousel-item-right.active,
     .carousel-inner.logo-inner .carousel-item-next {
-      transform: translateX(50%);
-      overflow: visible;
-      /*background-color: white !important;*/
+      transform: translateX(50%) !important;
     }
 
     .carousel-inner.logo-inner .carousel-item-left.active, 
     .carousel-inner.logo-inner .carousel-item-prev {
-      transform: translateX(-50%);
-      display: none;
-      /*background-color: white !important;*/
+      transform: translateX(-50%) !important;
     }
 }
+
+
+@media screen 
+  and (max-device-width: 770px)
+  /*and (max-width: 770px)*/
+  /*and (-webkit-device-pixel-ratio: 3) */
+  {
+
+    .carousel-inner.logo-inner .carousel-item-right.active,
+    .carousel-inner.logo-inner .carousel-item-next {
+      transform: translateX(50%) !important;
+    }
+
+    .carousel-inner.logo-inner .carousel-item-left.active, 
+    .carousel-inner.logo-inner .carousel-item-prev {
+      transform: translateX(-50%) !important;
+    }
+
+  .col-sm-12{
+    -webkit-box-flex: 0 !important;
+    -ms-flex: 0 0 100% !important;
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+  }
+
+  .col-sm-6{
+    -webkit-box-flex: 0 !important;
+    -ms-flex: 0 0 50% !important;
+    flex: 0 0 50% !important;
+    max-width: 50%;
+  }
+
+
+  .carousel-inner.header-inner {
+          height: -webkit-calc(85vh - 110px);
+      }
+
+      .missionStatement:after {
+          border-right: solid 30px #007d92;
+
+
+      }
+
+      .sponsorsContainer:after {
+          border-left: solid 30px #01495f;
+      }
+
+      .sponsorsContainer {
+          margin-bottom: 80px !important;
+      }
+
+}
+
+/*@media screen 
+  and (device-width: 360px) 
+  and (device-height: 640px) 
+  and (-webkit-device-pixel-ratio: 3) {
+
+    .col-sm-12{
+      -webkit-box-flex: 0 !important;
+      -ms-flex: 0 0 100% !important;
+      flex: 0 0 100% !important;
+      max-width: 100% !important;
+    }
+
+
+
+}*/
 
 
 

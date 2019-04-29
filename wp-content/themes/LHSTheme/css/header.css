@@ -772,6 +772,89 @@
   }
 }
 
+@media screen 
+  and (max-device-width: 500px) 
+  /*and (-webkit-device-pixel-ratio: 3) */
+  {
+      .nav_item_sub > a {
+          font-size: 28pt;
+          margin-top: 15px !important;
+          padding: 15px;
+      }
+
+      .navArrows {
+        font-size: 30pt;
+        margin-left: 25px !important;
+      }
+
+      #sidebar-wrapper > ul > li {
+          line-height: 100px;
+          margin-top: 40px !important;
+          margin-bottom: 40px !important;
+      }
+
+      .sidebar-nav {
+          width: 100%;
+          font-size: 30pt;
+      }
+
+      #sidebar-wrapper.active {
+          width: 50%;
+      }
+
+      .fa {
+          font-size: 50pt;
+          margin-top: 24px !important;
+      }
+
+      .menu-toggle {
+          width: 100px;
+          height: 100px;
+          line-height: 100px;
+          z-index: 999;
+          top: 80px;
+      }
+
+      .sidebar-nav > .sidebar-brand {
+          font-size: 30pt;
+      }
+
+      .dropdown-content{
+        line-height: 50px;
+      }
+
+      .subNavArrows {
+          font-size: 30pt;
+          margin-left: 20px !important;
+      }
+
+      .subPageAttatchments{
+          margin-left: 40px !important;
+      }
+
+      .nested_sub_item > a{
+          width: 70% !important;
+      }
+
+      .menu-toggle .fa{
+          font-size: 40pt;
+          margin-top: 24px !important;
+      }
+
+      .navbarContainer {
+          height: 250px;
+      }
+
+      .lshLogoImage {
+          top: 15px;
+          left: 10%;
+          height: 175px;
+          width: 175px;
+      }
+
+
+
+
 
 
 
